@@ -7,7 +7,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Define the port
-var port = process.env.port || 3001;
+var port = process.env.port || 3000;
 
 // Function to add two numbers
 const addTwoNumber = (n1, n2) => {
