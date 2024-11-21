@@ -1,13 +1,21 @@
 var express = require("express");
+var path = require("path");
 var app = express();
 
-// Middleware to serve static files and parse JSON and URL-encoded data
-app.use(express.static(__dirname + '/public'));
+// Serve static files from the "public" folder
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Middleware to parse JSON and URL-encoded data
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Define the port
-var port = process.env.port || 3000;
+var port = process.env.port || 8999;
+
+// Serve the index.html file for the root route
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 // Function to add two numbers
 const addTwoNumber = (n1, n2) => {
@@ -28,7 +36,7 @@ app.get("/addTwoNumber", (req, res) => {
 
     // Respond with the result and a message
     res.json({
-                message: `The addition of two numbers is: ${result}`
+        message: `The addition of two numbers is: ${result}`
     });
 });
 
