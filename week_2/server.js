@@ -36,6 +36,8 @@ app.get("/addTwoNumber", (req, res) => {
 
     // Respond with the result and a message
     res.json({
+        statusCode: 200,
+        data: result,
         message: `The addition of two numbers is: ${result}`
     });
 });
