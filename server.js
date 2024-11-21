@@ -3,7 +3,7 @@ var app = express()
 app.use(express.static(__dirname+'/public'))
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-var port = process.env.port || 3000;
+var port = process.env.port || 8080;
 const addTwoNumber= (n1,n2) => {
     return n1+n2;
 }
@@ -11,7 +11,8 @@ app.get("/addTwoNumber", (req,res)=>{
     const n1= parseInt(req.query.n1);
     const n2=parseInt(req.query.n2);
     const result = addTwoNumber(n1,n2);
-    res.json({statuscocde:200, data: result }); 
+    res.json({statuscocde:200, 
+        data: "The addition of two numbers are "result }); 
 });
 
 app.listen(port,()=>{
