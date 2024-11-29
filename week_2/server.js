@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Define the port
-var port = process.env.port || 8999;
+var port = process.env.port || 8998
 
 // Serve the index.html file for the root route
 app.get("/", (req, res) => {
