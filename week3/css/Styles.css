@@ -1,0 +1,15 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    margin-top: 2rem;
+    color: #333;
+}
+
+.card-title {
+    color: #007BFF;
+}
