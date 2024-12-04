@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('./database');  // Import database connectionconst 
 app = express();
-const PORT = process.env.PORT || 6500; 
+const PORT = process.env.PORT || 6800; 
 app.use(express.json()); 
 // For parsing JSON bodies 
 app.get("/", (req, res) => 

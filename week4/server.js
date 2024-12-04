@@ -1,50 +1,127 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
+const { MongoClient, ServerApiVersion } = require("mongodb"); 
 
-// Initialize Express App
-const app = express();
-app.use(bodyParser.json());
+  
 
-// MongoDB Connection (Database name set to 'mongodb')
-const mongoURI = "mongodb://localhost:27017/mongodb"; // 'mongodb' is now the database name
-mongoose
-  .connect(mongoURI)
-  .then(() => console.log("MongoDB connected to database 'mongodb'"))
-  .catch((err) => console.error("MongoDB connection error:", err));
+// Replace the placeholder with your Atlas connection string 
 
-// Define a Schema and Model
-const socketSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  location: { type: String, required: true },
-});
+const uri = "mongodb://localhost:27017/"; 
 
-const Socket = mongoose.model("Socket", socketSchema);
+  
 
-// API Routes
-// Get all sockets
-app.get("/sockets", async (req, res) => {
-  try {
-    const sockets = await Socket.find();
-    res.json(sockets);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("Server Error");
-  }
-});
+async function insertData() { 
 
-// Add a new socket
-app.post("/sockets", async (req, res) => {
-  try {
-    const newSocket = new Socket(req.body);
-    await newSocket.save();
-    res.status(201).json(newSocket);
-  } catch (err) {
-    console.error(err);
-    res.status(400).send("Error saving data");
-  }
-});
+    const client = new MongoClient(uri); 
 
-// Start the Server
-const PORT = 5000;
-app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+  
+
+    try { 
+
+        // Connect to the MongoDB server 
+
+        await client.connect(); 
+
+  
+
+        // Access the database and collection 
+
+        const db = client.db("myDB"); 
+
+        const collection = db.collection("pizzaMenu"); 
+
+  
+
+        const pizzas = [ 
+
+            { name: "Margherita", ingredients: ["tomato", "mozzarella", "basil"], price: 8.99 }, 
+
+            { name: "Pepperoni", ingredients: ["tomato", "mozzarella", "pepperoni"], price: 9.99 }, 
+
+            { name: "Veggie Supreme", ingredients: ["tomato", "bell peppers", "onion", "olives"], price: 10.49 } 
+
+        ]; 
+
+        
+
+  
+
+        // Insert the data 
+
+        const result = await collection.insertMany(pizzas); 
+
+        console.log(`${result.insertedCount} documents inserted:`, result.insertedIds); 
+
+    } catch (err) { 
+
+        console.error('Error inserting data:', err); 
+
+    } finally { 
+
+        // Close the connection 
+
+        await client.close(); 
+
+    } 
+
+} 
+
+  
+
+  
+
+async function fetchAllData() { 
+
+    const client = new MongoClient(uri); 
+
+  
+
+    try { 
+
+        // Connect to the MongoDB server 
+
+        await client.connect(); 
+
+  
+
+        // Access the database and collection 
+
+        const db = client.db("myDB"); 
+
+        const collection = db.collection("pizzaMenu"); 
+
+  
+
+        // Fetch all documents from the collection 
+
+        const data = await collection.find().toArray(); 
+
+  
+
+        // Print the data 
+
+        console.log(data); 
+
+    } catch (err) { 
+
+        console.error('Error fetching data:', err); 
+
+    } finally { 
+
+        // Close the connection 
+
+        await client.close(); 
+
+    } 
+
+} 
+
+  
+
+  
+
+// Run the function 
+
+insertData(); 
+
+// Run the function 
+
+fetchAllData(); 
