@@ -1,1 +1,53 @@
-[]
+[
+  {
+    "url": "cricbuzz",
+    "vulnerabilities": [
+      {
+        "type": "SQL Injection",
+        "severity": "High"
+      },
+      {
+        "type": "Cross-Site Scripting (XSS)",
+        "severity": "Medium"
+      },
+      {
+        "type": "Outdated Software",
+        "severity": "Low"
+      }
+    ]
+  },
+  {
+    "url": "52fsv6e",
+    "vulnerabilities": [
+      {
+        "type": "SQL Injection",
+        "severity": "High"
+      },
+      {
+        "type": "Cross-Site Scripting (XSS)",
+        "severity": "Medium"
+      },
+      {
+        "type": "Outdated Software",
+        "severity": "Low"
+      }
+    ]
+  },
+  {
+    "url": "200",
+    "vulnerabilities": [
+      {
+        "type": "SQL Injection",
+        "severity": "High"
+      },
+      {
+        "type": "Cross-Site Scripting (XSS)",
+        "severity": "Medium"
+      },
+      {
+        "type": "Outdated Software",
+        "severity": "Low"
+      }
+    ]
+  }
+]

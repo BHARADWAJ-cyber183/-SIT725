@@ -1,4 +1,4 @@
-const VulnerabilityModel = require('../Models/vulnerabilityModel');
+const VulnerabilityModel = require('../models/vulnerabilityModel');
 
 const scan = (req, res) => {
   const { url } = req.body;
