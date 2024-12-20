@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scan Results</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <h1>Scan Results</h1>
+  <div id="results"></div>
+  <script>
+    fetch('/api/results')
+      .then((response) => response.json())
+      .then((data) => {
+        const resultsDiv = document.getElementById('results');
+        data.forEach((result) => {
+          const urlHeader = document.createElement('h3');
+          urlHeader.innerHTML = `URL: ${result.url}`;
+          resultsDiv.appendChild(urlHeader);
+
+          result.vulnerabilities.forEach((vul) => {
+            const p = document.createElement('p');
+            p.innerHTML = `${vul.type} - Severity: ${vul.severity}`;
+            resultsDiv.appendChild(p);
+          });
+        });
+      });
+  </script>
+</body>
+</html>
