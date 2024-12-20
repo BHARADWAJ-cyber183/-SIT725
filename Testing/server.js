@@ -1,9 +1,9 @@
 const express = require('express');
 const path = require('path');
-const scannerRoutes = require('./routes/scannerRoutes');
+const scannerRoutes = require('../routes/scannerRoutes');
 
 const app = express();
-const PORT = 2700;
+const PORT = 7700;
 
 // Middleware to parse JSON and serve static files
 app.use(express.json());
