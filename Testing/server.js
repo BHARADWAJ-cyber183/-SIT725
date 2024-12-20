@@ -3,7 +3,7 @@ const path = require('path');
 const scannerRoutes = require('./routes/scannerRoutes');
 
 const app = express();
-const PORT = 7700;
+const PORT = 2900;
 
 // Middleware to parse JSON and serve static files
 app.use(express.json());

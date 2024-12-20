@@ -49,5 +49,56 @@
         "severity": "Low"
       }
     ]
+  },
+  {
+    "url": "huh",
+    "vulnerabilities": [
+      {
+        "type": "SQL Injection",
+        "severity": "High"
+      },
+      {
+        "type": "Cross-Site Scripting (XSS)",
+        "severity": "Medium"
+      },
+      {
+        "type": "Outdated Software",
+        "severity": "Low"
+      }
+    ]
+  },
+  {
+    "url": "-07t6iuyt)!@#$%^&*9",
+    "vulnerabilities": [
+      {
+        "type": "SQL Injection",
+        "severity": "High"
+      },
+      {
+        "type": "Cross-Site Scripting (XSS)",
+        "severity": "Medium"
+      },
+      {
+        "type": "Outdated Software",
+        "severity": "Low"
+      }
+    ]
+  },
+  {
+    "url": "0",
+    "vulnerabilities": [
+      {
+        "type": "SQL Injection",
+        "severity": "High"
+      },
+      {
+        "type": "Cross-Site Scripting (XSS)",
+        "severity": "Medium"
+      },
+      {
+        "type": "Outdated Software",
+        "severity": "Low"
+      }
+    ]
   }
 ]
