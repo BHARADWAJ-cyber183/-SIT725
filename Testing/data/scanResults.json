@@ -100,5 +100,107 @@
         "severity": "Low"
       }
     ]
+  },
+  {
+    "url": "sd",
+    "vulnerabilities": [
+      {
+        "type": "SQL Injection",
+        "severity": "High"
+      },
+      {
+        "type": "Cross-Site Scripting (XSS)",
+        "severity": "Medium"
+      },
+      {
+        "type": "Outdated Software",
+        "severity": "Low"
+      }
+    ]
+  },
+  {
+    "url": "swk",
+    "vulnerabilities": [
+      {
+        "type": "SQL Injection",
+        "severity": "High"
+      },
+      {
+        "type": "Cross-Site Scripting (XSS)",
+        "severity": "Medium"
+      },
+      {
+        "type": "Outdated Software",
+        "severity": "Low"
+      }
+    ]
+  },
+  {
+    "url": "swk",
+    "vulnerabilities": [
+      {
+        "type": "SQL Injection",
+        "severity": "High"
+      },
+      {
+        "type": "Cross-Site Scripting (XSS)",
+        "severity": "Medium"
+      },
+      {
+        "type": "Outdated Software",
+        "severity": "Low"
+      }
+    ]
+  },
+  {
+    "url": "cricbuzz",
+    "vulnerabilities": [
+      {
+        "type": "SQL Injection",
+        "severity": "High"
+      },
+      {
+        "type": "Cross-Site Scripting (XSS)",
+        "severity": "Medium"
+      },
+      {
+        "type": "Outdated Software",
+        "severity": "Low"
+      }
+    ]
+  },
+  {
+    "url": "facebook",
+    "vulnerabilities": [
+      {
+        "type": "SQL Injection",
+        "severity": "High"
+      },
+      {
+        "type": "Cross-Site Scripting (XSS)",
+        "severity": "Medium"
+      },
+      {
+        "type": "Outdated Software",
+        "severity": "Low"
+      }
+    ]
+  },
+  {
+    "url": "hotstar",
+    "vulnerabilities": [
+      {
+        "type": "SQL Injection",
+        "severity": "High"
+      },
+      {
+        "type": "Cross-Site Scripting (XSS)",
+        "severity": "Medium"
+      },
+      {
+        "type": "Outdated Software",
+        "severity": "Low"
+      }
+    ]
   }
 ]
