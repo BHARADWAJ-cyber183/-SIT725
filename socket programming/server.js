@@ -5,7 +5,7 @@ const { Server } = require('socket.io');
 const scannerController = require('./controllers/scannerController');
 
 const app = express();
-const PORT = 7700;
+const PORT = 7799;
 
 // Create an HTTP server for WebSocket integration
 const server = http.createServer(app);
@@ -27,18 +27,19 @@ app.get('/result', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'result.html'));
 });
 
-// WebSocket connection for real-time updates
+// WebSocket connection for real-time updates and random number broadcasting
 io.on('connection', (socket) => {
   console.log('A user connected');
-  socket.on('start-scan', (data) => {
-    console.log(`Starting scan for URL: ${data.url}`);
-    scannerController.scanWithSocket(data.url, (update) => {
-      socket.emit('scan-update', update);
-    });
-  });
+
+  // Emit random numbers to the client every 2 seconds
+  const interval = setInterval(() => {
+    const randomNumber = Math.floor(Math.random() * 100) + 1; // Random number between 1 and 100
+    socket.emit('number', { number: randomNumber });
+  }, 2000);
 
   socket.on('disconnect', () => {
     console.log('A user disconnected');
+    clearInterval(interval); // Clear interval when the client disconnects
   });
 });
 
