@@ -18,7 +18,7 @@
     <ul id="updates"></ul>
   </div>
   <div id="random-number-display">
-    <h2>Random Number Generator</h2>
+    <h2>Scanning Numbers</h2>
     <p id="random-number">Waiting for number...</p>
   </div>
   <script src="/socket.io/socket.io.js"></script>
@@ -44,7 +44,7 @@
 
     // Listen for random number updates
     socket.on('number', (data) => {
-      randomNumberDisplay.textContent = `Random Number: ${data.number}`;
+      randomNumberDisplay.textContent = `Scanning Number: ${data.number}`;
     });
   </script>
 </body>
