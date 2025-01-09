@@ -8,10 +8,44 @@
 </head>
 <body>
   <h1>Web Vulnerability Scanner</h1>
-  <form action="/scan" method="POST">
+  <form id="scan-form">
     <label for="url">Enter URL to Scan:</label>
     <input type="text" id="url" name="url" required>
     <button type="submit">Scan</button>
   </form>
+  <div id="real-time-results">
+    <h2>Real-Time Scan Updates</h2>
+    <ul id="updates"></ul>
+  </div>
+  <div id="random-number-display">
+    <h2>Random Number Generator</h2>
+    <p id="random-number">Waiting for number...</p>
+  </div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const form = document.getElementById('scan-form');
+    const updatesList = document.getElementById('updates');
+    const randomNumberDisplay = document.getElementById('random-number');
+    const socket = io();
+
+    // Handle form submission
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const url = document.getElementById('url').value;
+      socket.emit('start-scan', { url });
+    });
+
+    // Listen for scan updates
+    socket.on('scan-update', (data) => {
+      const li = document.createElement('li');
+      li.textContent = `${data.message}`;
+      updatesList.appendChild(li);
+    });
+
+    // Listen for random number updates
+    socket.on('number', (data) => {
+      randomNumberDisplay.textContent = `Random Number: ${data.number}`;
+    });
+  </script>
 </body>
 </html>
