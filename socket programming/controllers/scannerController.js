@@ -1,13 +1,17 @@
 const VulnerabilityModel = require('../models/vulnerabilityModel');
 
-const scan = (req, res) => {
-  const { url } = req.body;
-  if (!url) {
-    return res.status(400).send('URL is required');
-  }
+const scan = (socket) => {
+  socket.on('start-scan', (data) => {
+    const { url } = data;
+    if (!url) {
+      socket.emit('scan-update', { message: 'URL is required' });
+      return;
+    }
 
-  const vulnerabilities = VulnerabilityModel.scanWebsite(url);
-  res.json({ url, vulnerabilities });
+    VulnerabilityModel.scanWebsite(url, (update) => {
+      socket.emit('scan-update', update);
+    });
+  });
 };
 
 module.exports = { scan };
