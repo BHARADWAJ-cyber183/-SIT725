@@ -1,9 +1,9 @@
-from flask import Flask, request, jsonify
+from flask import Flask, send_from_directory, request, jsonify
 import requests
-from bs4 import BeautifulSoup
 import re
+import os
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='.')
 
 def scan_xss(url):
     payload = "<script>alert('XSS')</script>"
@@ -25,6 +25,17 @@ def scan_sql_injection(url):
     except requests.RequestException:
         return False
 
+# Serve the frontend
+@app.route('/')
+def index():
+    return send_from_directory('.', 'index.html')
+
+# Serve static files like CSS and JS
+@app.route('/<path:path>')
+def serve_static(path):
+    return send_from_directory('.', path)
+
+# Scan API endpoint
 @app.route('/scan', methods=['POST'])
 def scan_website():
     data = request.json
@@ -39,4 +50,4 @@ def scan_website():
     return jsonify(results)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=9877)
