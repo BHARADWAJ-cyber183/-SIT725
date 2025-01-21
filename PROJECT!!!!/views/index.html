@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Web Vulnerability Scanner</title>
   <link rel="stylesheet" href="/styles.css">
+  <title>Web Vulnerability Scanner</title>
 </head>
 <body>
   <h1>Web Vulnerability Scanner</h1>
-  <form action="/scan" method="POST">
+  <form action="/scan" method="get">
     <label for="url">Enter URL to Scan:</label>
-    <input type="text" id="url" name="url" required>
+    <input type="url" id="url" name="url" required>
     <button type="submit">Scan</button>
   </form>
 </body>

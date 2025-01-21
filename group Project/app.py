@@ -1,9 +1,13 @@
+# Web Vulnerability Scanner Code
+
+## Backend Code (Python - Flask Framework)
+
 from flask import Flask, send_from_directory, request, jsonify
 import requests
 import re
 import os
 
-app = Flask(__name__, static_folder='.')
+app = Flask(__name__, static_folder='static')
 
 def scan_xss(url):
     payload = "<script>alert('XSS')</script>"
@@ -31,9 +35,9 @@ def index():
     return send_from_directory('.', 'index.html')
 
 # Serve static files like CSS and JS
-@app.route('/<path:path>')
+@app.route('/static/<path:path>')
 def serve_static(path):
-    return send_from_directory('.', path)
+    return send_from_directory('static', path)
 
 # Scan API endpoint
 @app.route('/scan', methods=['POST'])
