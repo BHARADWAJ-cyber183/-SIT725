@@ -3,7 +3,7 @@ const path = require('path');
 const scannerRoutes = require('./routes/scannerRoutes');
 
 const app = express();
-const PORT = 9298;
+const PORT = 9288;
 
 // Middleware
 app.use(express.json());
@@ -24,7 +24,7 @@ app.get('/result', (req, res) => {
 module.exports = app;
 
 // Start server
-if (process.env.NODE_ENV !== 'test') {
+if (process.env.NODE_ENV !== 'PROJECT!!!') {
   app.listen(PORT, () => {
     console.log(`Server is running on http://127.0.0.1:${PORT}`);
   });
