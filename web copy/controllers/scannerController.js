@@ -10,10 +10,10 @@ async function scanWebsite(req, res) {
     }
 
     try {
-        console.log("Scanning for XSS and SQL Injection..."); // Debugging
+        console.log("Scanning for XSS and SQL Injection..."); 
 
-        const xssResults = await scannerModel.checkXSS(url);  // ✅ Use scannerModel.checkXSS()
-        const sqlResults = await scannerModel.checkSQLInjection(url);  // ✅ Use scannerModel.checkSQLInjection()
+        const xssResults = await scannerModel.checkXSS(url);  // Use scannerModel.checkXSS()
+        const sqlResults = await scannerModel.checkSQLInjection(url);  // Use scannerModel.checkSQLInjection()
 
         res.json({
             url,
