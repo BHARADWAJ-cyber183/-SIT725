@@ -3,7 +3,8 @@ const path = require('path');
 const scannerRoutes = require('./routes/scannerRoutes');
 
 const app = express();
-const PORT = 5298; // Changed the port to 5098
+const PORT = 8005; // Changed the port to 8005
+
 
 // Middleware
 app.use(express.json());
