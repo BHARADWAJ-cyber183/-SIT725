@@ -1,7 +1,7 @@
-const { checkXSS, checkSQLInjection } = require('../models/scannerModel');
+const scannerModel = require('../models/scannerModel');  // ✅ Import the entire module
 
 async function scanWebsite(req, res) {
-    console.log("scanWebsite function is being called"); // Debugging statement
+    console.log("scanWebsite function is being called");
 
     const { url } = req.query;
 
@@ -10,18 +10,21 @@ async function scanWebsite(req, res) {
     }
 
     try {
-        const xssResults = await checkXSS(url);
-        const sqlResults = await checkSQLInjection(url);
-        
+        console.log("Scanning for XSS and SQL Injection..."); // Debugging
+
+        const xssResults = await scannerModel.checkXSS(url);  // ✅ Use scannerModel.checkXSS()
+        const sqlResults = await scannerModel.checkSQLInjection(url);  // ✅ Use scannerModel.checkSQLInjection()
+
         res.json({
             url,
             xssResults,
             sqlResults
         });
     } catch (error) {
+        console.error(`Error during scanning: ${error.message}`); // Debugging
         res.status(500).json({ error: `Error scanning the URL: ${error.message}` });
     }
 }
 
-console.log("Exporting scanWebsite function:", scanWebsite); // Debugging statement
+console.log("Exporting scanWebsite function:", scanWebsite);
 module.exports = { scanWebsite };
