@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const { scanWebsite } = require('../controllers/scannerController');
+const scannerController = require('../controllers/scannerController'); // Import the controller
 
 const router = express.Router();
 
@@ -15,6 +15,6 @@ router.get('/result', (req, res) => {
 });
 
 // Route to scan a website
-router.get('/scan', scanWebsite);
+router.get('/scan', scannerController.scanWebsite); // Use the correct reference
 
 module.exports = router;
