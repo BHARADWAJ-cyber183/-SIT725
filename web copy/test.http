@@ -1,0 +1,22 @@
+### ✅ 1. Create (Scan a Website)
+GET http://127.0.0.1:5206/scan?url=https://example.com
+Content-Type: application/json
+
+
+### ✅ 2. Read (Fetch All Scan Results)
+GET http://127.0.0.1:5206/results
+Content-Type: application/json
+
+
+### ✅ 3. Update (Modify a Specific Scan Result)
+PUT http://127.0.0.1:5206/result/65c12345678abc
+Content-Type: application/json
+
+{
+    "xssResults": ["Updated XSS vulnerability"],
+    "sqlResults": ["Updated SQL Injection results"]
+}
+
+### ✅ 4. Delete (Remove a Scan Result)
+DELETE http://127.0.0.1:5206/result/65c12345678abc
+Content-Type: application/json
