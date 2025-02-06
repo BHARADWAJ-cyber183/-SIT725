@@ -1,14 +1,10 @@
-require("dotenv").config();
 const express = require("express");
 const path = require("path");
-const { connectDB } = require("./models/database"); // MongoDB Connection
 const scannerRoutes = require("./routes/scannerRoutes");
+const { connectDB } = require("./models/database"); // ✅ Correctly importing connectDB
 
 const app = express();
-const PORT = 5208;
-
-// Connect to MongoDB
-connectDB();
+const PORT = 5728;
 
 // Middleware
 app.use(express.json());
@@ -16,14 +12,20 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, "views")));
 
-// Routes
-app.use("/", scannerRoutes);
+// Connect to MongoDB before starting the server
+async function startServer() {
+    try {
+        await connectDB();
+        console.log("🚀 Database connection successful");
 
-let server = null;
-if (process.env.NODE_ENV !== "test") {
-  server = app.listen(PORT, () => {
-    console.log(`✅ Server is running on http://127.0.0.1:${PORT}`);
-  });
+        let server = app.listen(PORT, () => {
+            console.log(`✅ Server is running on http://127.0.0.1:${PORT}`);
+        });
+
+        module.exports = { app, server };
+    } catch (error) {
+        console.error("❌ Failed to start server:", error);
+    }
 }
 
-module.exports = { app, server };
+startServer(); // ✅ Call the async function to start server
