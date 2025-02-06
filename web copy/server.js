@@ -1,10 +1,10 @@
 const express = require("express");
 const path = require("path");
 const scannerRoutes = require("./routes/scannerRoutes");
-const { connectDB } = require("./models/database"); // ✅ Correctly importing connectDB
+const connectDB = require("./models/database"); // ✅ Corrected import (no curly brackets)
 
 const app = express();
-const PORT = 5198;
+const PORT = 5898;
 
 // Middleware
 app.use(express.json());
