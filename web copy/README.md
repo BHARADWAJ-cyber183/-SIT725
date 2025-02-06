@@ -18,8 +18,8 @@ A web application that scans for **SQL Injection (SQLi) and Cross-Site Scripting
 - **Jest + Supertest** (Testing)
 - **HTML + CSS** (Frontend)
 
-## Installation
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/yourusername/web-vulnerability-scanner.git
-   cd web-vulnerability-scanner
+## Features
+- Detects **XSS** and **SQL Injection**.
+- Stores **scan results** in MongoDB.
+- Provides **CRUD operations** for results.
+- Uses **REST API architecture*

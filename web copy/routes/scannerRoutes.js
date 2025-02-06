@@ -1,13 +1,19 @@
 const express = require("express");
-const scannerController = require("../controllers/scannerController");
+const path = require("path");
+const { scanWebsite, getScanResults, deleteScanResult } = require("../controllers/scannerController"); // ✅ Ensure proper imports
 
 const router = express.Router();
 
-// ✅ Define Scan Route
-router.get("/scan", scannerController.scanWebsite);
+// ✅ Route to serve home page
+router.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../views/index.html"));
+});
 
-// ✅ CRUD Routes for Scan Results
-router.get("/results", scannerController.getScanResults);
-router.delete("/result/:id", scannerController.deleteScanResult);
+// ✅ Route to scan a website
+router.get("/scan", scanWebsite);
+
+// ✅ CRUD Routes for MongoDB
+router.get("/results", getScanResults);
+router.delete("/result/:id", deleteScanResult);
 
 module.exports = router;

@@ -1,15 +1,29 @@
-const { checkXSS, checkSQLInjection } = require('../models/scannerModel');
+const request = require('supertest');
+const { app, server } = require('../server'); // Import app and server
 
-describe('Vulnerability Model Tests', () => {
-
-    test('Test Case 1: checkXSS should return an array of vulnerabilities', async () => {
-        const results = await checkXSS('https://example.com');
-        expect(Array.isArray(results)).toBe(true);
+describe('Scanner Controller Tests', () => {
+    
+    test('Test Case 1: Should return error when URL is not provided', async () => {
+        const response = await request(app).get('/scan');
+        expect(response.status).toBe(400);
+        expect(response.body.error).toBe('Please provide a URL to scan, e.g., /scan?url=https://example.com');
     });
 
-    test('Test Case 2: checkSQLInjection should return an array of vulnerabilities', async () => {
-        const results = await checkSQLInjection('https://example.com');
-        expect(Array.isArray(results)).toBe(true);
+    test('Test Case 2: Should return vulnerabilities when a valid URL is provided', async () => {
+        const response = await request(app).get('/scan?url=https://example.com');
+        expect(response.status).toBe(200);
+        expect(response.body).toHaveProperty('url');
+        expect(response.body).toHaveProperty('xssResults');
+        expect(response.body).toHaveProperty('sqlResults');
     });
 
+});
+
+// Close the server after all tests
+afterAll((done) => {
+    if (server) {
+        server.close(done);
+    } else {
+        done();
+    }
 });

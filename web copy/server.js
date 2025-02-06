@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, "views")));
 
-// ✅ Register Routes
+//  Register Routes
 app.use("/", scannerRoutes);
 
 async function startServer() {
